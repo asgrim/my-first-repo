@@ -1,15 +1,10 @@
 <?php
 declare(strict_types=1);
 
-//Store the input
-$hours = $_GET["hours"];
-$mins = $_GET["mins"];
-$secs = $_GET["secs"];
-
-//Make sure we only have numbers
-$hours = preg_replace("/[^0-9]/", "",$hours);
-$mins = preg_replace("/[^0-9]/", "",$mins);
-$secs = preg_replace("/[^0-9]/", "",$secs);
+// Store and filter the input
+$hours = (int)filter_input(INPUT_GET, 'hours', FILTER_SANITIZE_NUMBER_INT);
+$mins = (int)filter_input(INPUT_GET, 'mins', FILTER_SANITIZE_NUMBER_INT);
+$secs = (int)filter_input(INPUT_GET, 'secs', FILTER_SANITIZE_NUMBER_INT);
 
 //Turn everything into seconds
 $secs += ($hours*60*60)+($mins*60);
