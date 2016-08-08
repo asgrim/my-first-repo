@@ -6,8 +6,8 @@ $hours = (int)filter_input(INPUT_GET, 'hours', FILTER_SANITIZE_NUMBER_INT);
 $mins = (int)filter_input(INPUT_GET, 'mins', FILTER_SANITIZE_NUMBER_INT);
 $secs = (int)filter_input(INPUT_GET, 'secs', FILTER_SANITIZE_NUMBER_INT);
 
-//Turn everything into seconds
-$secs += ($hours*60*60)+($mins*60);
+// Turn everything into seconds
+$secs += ($hours * 60 * 60) + ($mins * 60);
 
 ?>
 <!DOCTYPE html>
