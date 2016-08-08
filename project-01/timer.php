@@ -72,47 +72,37 @@ $secs += ($hours * 60 * 60) + ($mins * 60);
 <script>
     document.ontouchmove = function(event){
         event.preventDefault();
-    }
+    };
 
-    var countdown = false;
-    var totalSeconds = 0;
+    var countdown = <?= $secs > 0 ? 'true' : 'false'; ?>;
+    var totalSeconds = <?= $secs; ?>;
 
-    <?php
-        if ($secs > 0)
+    if (countdown) {
+        UpdateTime(totalSeconds); // update countdown text with start time
+
+        // initiate countdown
+        var myTimer = setInterval(function() {
+            AdjustTime()
+        }, 1000);
+
+        function AdjustTime()
         {
-            echo "
-               countdown = true;
-               totalSeconds = $secs;
-            ";
-        }
-    ?>
+            totalSeconds--;
+            UpdateTime(totalSeconds); // update countdown text every time
 
-    if (countdown)
-    {
-
-        UpdateTime(totalSeconds); //update countdown text with start time
-        var myTimer = setInterval(function(){ AdjustTime() }, 1000); //initiate countdown
-
-        function AdjustTime() {
-            if (totalSeconds == 1)
-            {
-                totalSeconds -= 1;
-                UpdateTime (totalSeconds);
+            if (totalSeconds === 0) {
                 TimesUp();
             }
-            else
-            {
-                totalSeconds -= 1; //minus 1 second from the total
-                UpdateTime (totalSeconds); //update countdown text every time
-            }
         }
 
-        function TimesUp() {
+        function TimesUp()
+        {
             clearInterval(myTimer);
             beep();
         }
 
-        function beep() {
+        function beep()
+        {
             var snd = new Audio("sound/chime.wav");
             snd.play();
         }
@@ -123,10 +113,18 @@ $secs += ($hours * 60 * 60) + ($mins * 60);
         var hours   = Math.floor(timeRemaining / 3600);
         var minutes = Math.floor((timeRemaining - (hours * 3600)) / 60);
         var seconds = timeRemaining - (hours * 3600) - (minutes * 60);
-        if (hours   < 10) {hours   = "0"+hours;}
-        if (minutes < 10) {minutes = "0"+minutes;}
-        if (seconds < 10) {seconds = "0"+seconds;}
-        document.getElementById("time").innerHTML = hours+':'+minutes+':'+seconds;
+
+        if (hours   < 10) {
+            hours   = "0" + hours;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        document.getElementById("time").innerHTML = hours + ':' + minutes + ':' + seconds;
     }
 
 </script>
