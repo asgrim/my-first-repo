@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 //Store the input
 $hours = $_GET["hours"];
 $mins = $_GET["mins"];
