@@ -33,42 +33,33 @@ $secs += ($hours * 60 * 60) + ($mins * 60);
     <div class="timer-container">
         <h1>Countdown</h1>
         <p>Just another countdown timer.</p>
-        <?php
-        if ($secs <= 0)
-        {
-            echo "
-                <form action=\"\">
-                    <div class=\"input-container\">
-                        <div class=\"input-column\">
-                            <label for=\"hours\">hour</label>
-                            <input type=\"tel\" name=\"hours\" placeholder=\"0\" >
+        <?php if ($secs <= 0): ?>
+                <form action="">
+                    <div class="input-container">
+                        <div class="input-column">
+                            <label for="hours">hour</label>
+                            <input type="tel" name="hours" placeholder="0" >
                         </div>
-                        <div class=\"input-column\">
-                            <label for=\"mins\">mins</label>
-                            <input type=\"tel\" name=\"mins\" placeholder=\"0\" >
+                        <div class="input-column">
+                            <label for="mins">mins</label>
+                            <input type="tel" name="mins" placeholder="0" >
                         </div>
-                        <div class=\"input-column\">
-                            <label for=\"secs\">secs</label><br />
-                            <input type=\"tel\" name=\"secs\" placeholder=\"0\" >
+                        <div class="input-column">
+                            <label for="secs">secs</label><br />
+                            <input type="tel" name="secs" placeholder="0" >
                         </div>
-                        <div class=\"clearfix\"></div>
+                        <div class="clearfix"></div>
                     </div>
-                    <input type=\"submit\" value=\"Set Timer\">
+                    <input type="submit" value="Set Timer">
                 </form>
-            ";
-        }
-        else
-        {
-            echo "
+        <?php else: ?>
             <div class='countdown'>
                 <div class='input-container'>
-                    <p id=\"time\">0</p>
+                    <p id="time">0</p>
                 </div>
                 <a class='btn' href='timer.php'>Reset</a>
             </div>
-            ";
-        }
-        ?>
+        <?php endif; ?>
 
     </div>
 
